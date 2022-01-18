@@ -3,7 +3,7 @@ const app =express();
 const path = require('path');
 
 // require controller user
-const UserController = require('./controller/userController');
+const UserController = require('./controllers/userController');
 // import fil connexion database
 require('./config/database');
 // 
