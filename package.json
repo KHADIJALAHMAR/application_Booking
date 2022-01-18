@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "name": "application_booking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev" :"nodemon server.js",
+    "test": "server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHADIJALAHMAR/application_Booking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KHADIJALAHMAR/application_Booking/issues"
+  },
+  "homepage": "https://github.com/KHADIJALAHMAR/application_Booking#readme",
+  "description": ""
+}
