@@ -11,7 +11,11 @@ router.route('/login')
 .post((req,res) => {
 
 });
+router.route('/register')
+.get(UserController. loadRegisterPage )
+.post((req,res) => {
 
+});
 
 
 

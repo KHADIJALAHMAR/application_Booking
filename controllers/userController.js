@@ -1,6 +1,9 @@
 const loadLoginPage = (req,res) => {
-    res.render('landing');    
+    res.render('login');    
 };
+const loadRegisterPage =(req ,res) =>{
+    res.render('register');
+}
 
 
 
@@ -8,6 +11,6 @@ const loadLoginPage = (req,res) => {
 
 module.exports = {
     loadLoginPage,
-    // loadRegisterPage
+    loadRegisterPage
 }
 
