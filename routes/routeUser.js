@@ -7,10 +7,11 @@ const UserController = require('../controllers/userController');
 
 
 router.route('/login')
-.get( UserController.loadLoginPage )
+.get(UserController.loadLoginPage )
 .post((req,res) => {
 
 });
+
 
 
 

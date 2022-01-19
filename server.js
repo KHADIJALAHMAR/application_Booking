@@ -4,6 +4,8 @@ const path = require('path');
 
 // require controller user
 const UserController = require('./controllers/userController');
+const UserRoute = require('./routes/routeUser');
+
 // import fil connexion database
 require('./config/database');
 // 
@@ -18,7 +20,10 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 
 
+app.get('/' , (req,res) => {res.render("landing")});
 
+// user routes
+app.use(UserRoute);
 
 
 
