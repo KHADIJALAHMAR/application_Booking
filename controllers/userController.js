@@ -1,5 +1,5 @@
 const { redirect } = require("express/lib/response");
-
+const  User = require('../models/UserModel');
 const loadLoginPage = (req,res) => {
     res.render('login' ,{error_validation});    
 };
@@ -7,9 +7,9 @@ const loadRegisterPage =(req ,res) =>{
     res.render('register' ,{error_validation});
 }
 
-
+let error_validation ="";
 const validation_register = (req ,res)=>{
-    let error_validation ="";
+    
     const email_regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (req.body.username.length < 6 ||req.body.username.length >20 ) {
         error_validation =('add username btwen 6 and 20');
