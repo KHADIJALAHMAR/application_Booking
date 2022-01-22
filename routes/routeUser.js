@@ -8,14 +8,14 @@ const UserController = require('../controllers/userController');
 
 router.route('/login')
 .get(UserController.loadLoginPage )
-.post((req,res) => {
-
-});
+.post();
 router.route('/register')
-.get(UserController. loadRegisterPage )
-.post((req,res) => {
+.get(UserController.loadRegisterPage )
+.post(UserController.validation_register);
 
-});
+
+
+
 
 
 

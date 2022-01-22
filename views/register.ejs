@@ -1,5 +1,8 @@
 <%- include('./include/header', {title: 'Register'}); %>
 
+<% if(error_validation){ %>
+  <%= error_validation %>
+<% }
 <form action="/register" method="POST">
     <div class="form-group">
       <label for="user-name">User name</label>
