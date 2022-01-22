@@ -1,5 +1,7 @@
 const { redirect } = require("express/lib/response");
-const  User = require('../models/UserModel');
+const  {User, create} = require('../models/UserModel');
+const users = require('../models/UserModel');
+
 const loadLoginPage = (req,res) => {
     res.render('login' ,{error_validation});    
 };
@@ -29,7 +31,7 @@ const validation_register = (req ,res)=>{
     else {
         try{
             (async () =>{
-                await User.create({username: req.body.username , email: req.body.email, password: req.body.password});
+                await users.create({username: req.body.username , email: req.body.email, password: req.body.password});
                 res.redirect(`/login`);
             })();
         }catch(err) {
