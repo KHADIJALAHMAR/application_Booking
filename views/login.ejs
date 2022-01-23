@@ -1,5 +1,9 @@
 <%- include('./include/header', {title: 'Login'}); %>
 
+<% if (error) { %>
+<p> <%= error %></p>
+<% }%>
+
 <form action="/login" method="POST">
     <div class="form-group">
       <label for="user-mail" >Email address</label>

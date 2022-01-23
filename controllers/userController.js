@@ -1,9 +1,9 @@
 const { redirect } = require("express/lib/response");
-const  {User, create} = require('../models/UserModel');
-const users = require('../models/UserModel');
+// const  {User, create} = require('../models/UserModel');
+const User = require('../models/UserModel');
 
 const loadLoginPage = (req,res) => {
-    res.render('login' ,{error_validation});    
+    res.render('login' ,{error});    
 };
 const loadRegisterPage =(req ,res) =>{
     res.render('register' ,{error_validation});
@@ -31,7 +31,7 @@ const validation_register = (req ,res)=>{
     else {
         try{
             (async () =>{
-                await users.create({username: req.body.username , email: req.body.email, password: req.body.password});
+                await User.create({username: req.body.username , email: req.body.email, password: req.body.password});
                 res.redirect(`/login`);
             })();
         }catch(err) {
@@ -40,21 +40,28 @@ const validation_register = (req ,res)=>{
     }
   
 }
-
-const validation_login =(res ,req) => {
-    async() => {
-        const user =  await User.findOne ({ email: req.body.email });
+let error ="";
+const validation_login =(req,res) => {
+    
+    (async() => {
+       
+        const user = await User.findOne({email: req.body.email});
         const user_password= await User.findOne({password :req.body.password});
         if(!user){
-            error_validation = "email is not found";
+            error = "email is not found";
             res.redirect(`/login?error=${error_validation}`);
-        }else if(!user_password){
-            error_validation = "password is not found";
+        }
+        else if(!user_password){
+            error = "password is not found";
             res.redirect(`/login?error=${error_validation}`);
+        }else{
+            res.render('landing');
         }
 
 
-    }
+    }) ();
+
+
 }
 
 
