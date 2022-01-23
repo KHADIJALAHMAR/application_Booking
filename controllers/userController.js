@@ -38,6 +38,23 @@ const validation_register = (req ,res)=>{
             console.log(err.message);
         }
     }
+  
+}
+
+const validation_login =(res ,req) => {
+    async() => {
+        const user =  await User.findOne ({ email: req.body.email });
+        const user_password= await User.findOne({password :req.body.password});
+        if(!user){
+            error_validation = "email is not found";
+            res.redirect(`/login?error=${error_validation}`);
+        }else if(!user_password){
+            error_validation = "password is not found";
+            res.redirect(`/login?error=${error_validation}`);
+        }
+
+
+    }
 }
 
 
@@ -48,6 +65,7 @@ const validation_register = (req ,res)=>{
 module.exports = {
     loadLoginPage,
     loadRegisterPage,
-    validation_register
+    validation_register,
+    validation_login
 }
 
