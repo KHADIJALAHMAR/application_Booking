@@ -1,4 +1,5 @@
 const mongoose =require('mongoose');
+const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
     username : {
@@ -18,7 +19,10 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+
 // creating the model
 const User = mongoose.model('User', UserSchema);
+
+
 
 module.exports = User

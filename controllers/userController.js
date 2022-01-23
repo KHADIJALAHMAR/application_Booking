@@ -58,14 +58,10 @@ const validation_login =(req,res) => {
             res.render('landing');
         }
 
-
     }) ();
 
 
 }
-
-
-
 
 
 
