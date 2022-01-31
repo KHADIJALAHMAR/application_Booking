@@ -26,7 +26,8 @@ const UserSchema = new mongoose.Schema({
     password : {
         type: String,
         required: true
-    }
+    },
+    role: RoleSchema,
 });
 
 UserSchema.pre('save', function(next) {
