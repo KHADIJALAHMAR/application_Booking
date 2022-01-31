@@ -51,13 +51,22 @@ const validation_login =(req,res) => {
             error = "email is not found";
             res.redirect(`/login?error=${error_validation}`);
         }
-        else if(!user_password){
+        else if(!user_password <6 ){
             error = "password is not found";
             res.redirect(`/login?error=${error_validation}`);
         }else{
-            res.render('landing');
-        }
-
+            await user.comparePasswords(req.body.password).then((result) => {
+                if (!result) {
+                    error = 'password is incorrect';
+                    res.redirect(`/login?error=${error_validation}`);
+                }else{
+                    console.log(user);
+                    const userToken = jwt.sign(user.toJSON(),process.env.JWT_ACCESS_SECRET);
+                    console.log(userToken);
+                    res.redirect('/home');
+                }
+            }).catch((err) => console.log(err.message))
+        }  
     }) ();
 
 

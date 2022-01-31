@@ -1,6 +1,16 @@
 const mongoose =require('mongoose');
 const bcrypt = require('bcrypt');
 
+const RoleSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true
+    },
+    status: {
+      type: Boolean
+    }
+});
+
 const UserSchema = new mongoose.Schema({
     username : {
         type: String,
@@ -18,6 +28,21 @@ const UserSchema = new mongoose.Schema({
         required: true
     }
 });
+
+UserSchema.pre('save', function(next) {
+    const user = this;
+    // only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();
+
+    bcrypt.hash(user.password, 10).then((hashedPass) => {
+        user.password = hashedPass;
+        next();
+    });
+});
+
+UserSchema.methods.comparePasswords = function(password) {
+    return bcrypt.compare(password, this.password);
+}
 
 
 // creating the model
