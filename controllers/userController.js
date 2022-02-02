@@ -1,6 +1,7 @@
-const { redirect } = require("express/lib/response");
+require('dotenv').config()
 // const  {User, create} = require('../models/UserModel');
 const User = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
 
 const loadLoginPage = (req,res) => {
     res.render('login' ,{error});    
@@ -46,12 +47,11 @@ const validation_login =(req,res) => {
     (async() => {
        
         const user = await User.findOne({email: req.body.email});
-        const user_password= await User.findOne({password :req.body.password});
         if(!user){
             error = "email is not found";
             res.redirect(`/login?error=${error_validation}`);
         }
-        else if(!user_password <6 ){
+        else if( user.password <6 ){
             error = "password is not found";
             res.redirect(`/login?error=${error_validation}`);
         }else{
@@ -63,7 +63,7 @@ const validation_login =(req,res) => {
                     console.log(user);
                     const userToken = jwt.sign(user.toJSON(),process.env.JWT_ACCESS_SECRET);
                     console.log(userToken);
-                    res.redirect('/home');
+                    res.redirect('/landing');
                 }
             }).catch((err) => console.log(err.message))
         }  
